@@ -36,6 +36,19 @@ def help(lines):
             return (2, response)
         return (1, response)
 
+    # clang -ggdb3 -O0 -std=c11 -Wall -Werror -Wshadow    imreallytryingmario.c  -lcs50 -lm -o imreallytryingmario
+    # imreallytryingmario.c:37:28: error: equality comparison with extraneous parentheses [-Werror,-Wparentheses-equality]
+    #        for (int t = 0; (t == n); t++)
+    #                         ~~^~~~
+    # imreallytryingmario.c:37:28: note: remove extraneous parentheses around the comparison to silence this warning
+    #        for (int t = 0; (t == n); t++)
+    #                        ~  ^   ~
+    matches = match(r"extraneous parentheses", lines[0])
+    if matches:
+        response = ['Looks like you are using an extra set of parentheses in your comparison on line {} of `{}`. Try removing the parenthese/s and recompiling'.format(matches.group(2), matches.group(1))]
+        return (1, response)
+
+
     # $ clang foo.c
     # /tmp/foo-1ce1b9.o: In function `main':
     # foo.c:3:12: error: conflicting types for 'round'
