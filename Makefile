@@ -1,6 +1,6 @@
 MAINTAINER = "CS50 <sysadmins@cs50.harvard.edu>"
 NAME = help50
-VERSION = 1.1.1
+VERSION = 1.2.2
 
 .PHONY: bash
 bash:
@@ -24,6 +24,7 @@ deb:
 	--after-install after-install.sh \
 	--after-remove after-remove.sh \
 	--deb-no-default-config-files \
+	--depends bsdutils \
 	--depends coreutils \
 	--depends curl \
 	opt

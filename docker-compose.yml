@@ -6,6 +6,7 @@ services:
       - mysql
     environment:
       APPLICATION_ENV: dev
+      APP_URL: http://localhost:8080/
       HELP50_PASSWORD: crimson
       MYSQL_DATABASE: help50
       MYSQL_HOST: mysql
@@ -16,7 +17,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - .:/srv/www
+      - .:/var/www
   mysql:
     container_name: help50_mysql
     image: mysql
